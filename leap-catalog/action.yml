@@ -1,0 +1,26 @@
+name: "LEAP Catalog Action"
+description: "Install package, validate feedstocks, and generate catalog"
+author: "LEAP"
+inputs:
+  package:
+    description: "Git URL or package name with version to install"
+    required: false
+    default: "https://github.com/leap-stc/leap-data-management-utils"
+  validation-path:
+    description: "Path to the feedstocks input YAML file for validation"
+    required: false
+  single-feedstock:
+    description: "Path to a single feedstock YAML file to validate"
+    required: false
+  generation-path:
+    description: "Path to the feedstocks input YAML file for generation"
+    required: false
+  output-directory:
+    description: "Path to the output directory for the generated catalog"
+    required: false
+outputs: {}
+runs:
+  using: "composite"
+  steps:
+    - run: ./run.sh ${{ inputs.package }} ${{ inputs.validation-path }} ${{ inputs.single-feedstock }} ${{ inputs.generation-path }} ${{ inputs.output-directory }}
+      shell: bash
