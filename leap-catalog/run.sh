@@ -3,42 +3,29 @@
 set -e
 
 echo "🔄 Initializing LEAP Catalog Action..."
-echo "Arguments: version=$1, validation-path=$2, single-feedstock=$3, generation-path=$4, output-directory=$5, generation-path=$6"
-
+echo "Arguments: version=$1, validation-path=$2, single-feedstock=$3, generation-path=$4, output-directory=$5"
 
 # Check if version is "latest"
 if [ "$1" = "latest" ]; then
-  # Clone the GitHub repository
   git clone https://github.com/leap-stc/leap-data-management-utils
-
   cd leap-data-management-utils
-
   echo "🚀 Installing the package from the cloned repository..."
-
-  # Install the package from the cloned repository
   python -m pip install ".[catalog]"
 else
   echo "🔍 Installing package version: $1"
-  # Install package from PyPI
   python -m pip install "leap-data-management-utils[catalog]==$1"
 fi
 
-# Check if any action is specified
-echo "Arguments: version=$1, validation-path=$2, single-feedstock=$3, generation-path=$4, output-directory=$5"
+# Validate or generate based on input arguments
 if [ -n "$3" ]; then
-  if [ -n "$4" ]; then
-    # Validate single feedstock
-    echo "🔍 Validating single feedstock: $4"
-    leap-catalog validate --single "$4"
-  elif [ -n "$2" ]; then
-    # Validate feedstocks
-    echo "🔍 Validating feedstocks from: $2"
-    leap-catalog validate --path "$2"
-  else
-    echo "⚠️ No action specified. Please provide either 'single-feedstock', 'validation-path', or 'generation-path' and 'output-directory' inputs."
-  fi
-elif [ -n "$5" ] && [ -n "$6" ]; then
-  # Generate catalog
-  echo "🔍 Generating catalog from: $5 to $6"
-  leap-catalog generate --path "$5" --output "$6"
+  echo "🔍 Validating single feedstock: $3"
+  leap-catalog validate --single "$3"
+elif [ -n "$2" ]; then
+  echo "🔍 Validating feedstocks from: $2"
+  leap-catalog validate --path "$2"
+elif [ -n "$4" ] && [ -n "$5" ]; then
+  echo "🔍 Generating catalog from: $4 to $5"
+  leap-catalog generate --path "$4" --output "$5"
+else
+  echo "⚠️ No valid action specified. Please check input parameters."
 fi
