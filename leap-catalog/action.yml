@@ -23,5 +23,6 @@ runs:
   using: "composite"
   steps:
     - run: |
-        ./run.sh "${{ inputs.version }}" "${{ inputs.validation-path }}" "${{ inputs.single-feedstock }}" "${{ inputs.generation-path }}" "${{ inputs.output-directory }}"
+        cd leap-stc/data-catalog-actions
+        ./leap-catalog/run.sh "${{ inputs.version }}" "${{ inputs.validation-path }}" "${{ inputs.single-feedstock }}" "${{ inputs.generation-path }}" "${{ inputs.output-directory }}"
       shell: bash
