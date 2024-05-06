@@ -24,6 +24,7 @@ else
 fi
 
 # Check if any action is specified
+echo "Arguments: version=$1, validation-path=$2, single-feedstock=$3, generation-path=$4, output-directory=$5"
 if [ -n "$3" ]; then
   if [ -n "$4" ]; then
     # Validate single feedstock
