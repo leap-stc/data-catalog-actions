@@ -4,6 +4,10 @@ on:
   push:
     branches: [main]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -14,7 +18,7 @@ jobs:
       - name: validate single
         uses: ./leap-catalog
         with:
-          version: "0.0.8"
+          version: "latest"
           single-feedstock: "https://raw.githubusercontent.com/leap-stc/LEAP_template_feedstock/main/feedstock/catalog.yaml"
 
       - name: validate many
