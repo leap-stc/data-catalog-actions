@@ -18,7 +18,6 @@ jobs:
       - name: validate single
         uses: ./leap-catalog
         with:
-          version: "latest"
           single-feedstock: "https://raw.githubusercontent.com/leap-stc/LEAP_template_feedstock/main/feedstock/catalog.yaml"
 
       - name: validate many

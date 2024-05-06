@@ -5,15 +5,9 @@ set -e
 echo "🔄 Initializing LEAP Catalog Action..."
 echo "Arguments: version=$1, validation-path=$2, single-feedstock=$3, generation-path=$4, output-directory=$5"
 
-# Check if version is "latest"
-if [ "$1" = "latest" ]; then
-  echo "🚀 Installing the package from the cloned repository..."
-  python -m pip install "git+https://github.com/leap-stc/leap-data-management-utils#egg=leap-data-management-utils[complete]" || { echo "Installation failed"; exit 1; }
+echo "🔍 Installing package version: $1"
+python -m pip install "leap-data-management-utils[complete]==$1" || { echo "Specific version installation failed"; exit 1; }
 
-else
-  echo "🔍 Installing package version: $1"
-  python -m pip install "leap-data-management-utils[complete]==$1" || { echo "Specific version installation failed"; exit 1; }
-fi
 
 # Validate or generate based on input arguments
 if [ -n "$3" ]; then

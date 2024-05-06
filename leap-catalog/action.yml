@@ -5,7 +5,7 @@ inputs:
   version:
     description: "Version of the package to install"
     required: false
-    default: "latest"
+    default: "0.0.8"
   validation-path:
     description: "Path to the feedstocks input YAML file for validation"
     required: false
