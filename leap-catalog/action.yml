@@ -23,6 +23,6 @@ runs:
   using: "composite"
   steps:
     - run: |
-        cd data-catalog-actions
+        cd cd ${{github.action_path}}
         ./leap-catalog/run.sh "${{ inputs.version }}" "${{ inputs.validation-path }}" "${{ inputs.single-feedstock }}" "${{ inputs.generation-path }}" "${{ inputs.output-directory }}"
       shell: bash
