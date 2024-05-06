@@ -23,6 +23,7 @@ runs:
   using: "composite"
   steps:
     - run: |
+        set -e
 
         echo "🔄 Initializing LEAP Catalog Action..."
         echo "Arguments: version=$1, validation-path=$2, single-feedstock=$3, generation-path=$4, output-directory=$5"
@@ -47,4 +48,4 @@ runs:
         fi
 
         exit 0
-      shell: bash -e {0}
+      shell: bash
