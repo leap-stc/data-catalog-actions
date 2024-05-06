@@ -11,11 +11,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Run LEAP Catalog Action
+      - name: validate single
         uses: ./leap-catalog
         with:
           version: "0.0.8"
-          #validation-path: 'https://github.com/leap-stc/LEAP_template_feedstock/blob/main/feedstock/catalog.yaml'
-          #single-feedstock: 'path/to/single_feedstock.yaml'
+          single-feedstock: "https://raw.githubusercontent.com/leap-stc/LEAP_template_feedstock/main/feedstock/catalog.yaml"
+
+      - name: validate many
+        uses: ./leap-catalog
+        with:
+          version: "0.0.8"
+          validation-path: "https://raw.githubusercontent.com/leap-stc/data-management/main/catalog/input.yaml"
+
+      - name: Validate and Generate catalog
+        uses: ./leap-catalog
+        with:
+          version: "0.0.8"
           generation-path: "https://raw.githubusercontent.com/leap-stc/data-management/main/catalog/input.yaml"
           output-directory: "catalog/"
