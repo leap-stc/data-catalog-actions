@@ -1,0 +1,21 @@
+name: Test LEAP Catalog Action
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run LEAP Catalog Action
+        uses: ./leap-catalog
+        with:
+          version: "latest"
+          #validation-path: 'https://github.com/leap-stc/LEAP_template_feedstock/blob/main/feedstock/catalog.yaml'
+          #single-feedstock: 'path/to/single_feedstock.yaml'
+          generation-path: "https://raw.githubusercontent.com/leap-stc/data-management/main/catalog/input.yaml"
+          output-directory: "catalog/"

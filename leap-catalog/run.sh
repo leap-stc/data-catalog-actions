@@ -2,13 +2,18 @@
 
 set -e
 
-# Install package
-if [ -n "$1" ]; then
-  # If argument 1 is provided, assume it's a Git URL
-  python -m pip install "$1"
+# Check if version is "latest"
+if [ "$1" = "latest" ]; then
+  # Clone the GitHub repository
+  git clone https://github.com/leap-stc/leap-data-management-utils
+
+  cd leap-data-management-utils
+
+  # Install the package from the cloned repository
+  python -m pip install ".[catalog]"
 else
-  # If argument 1 is not provided, assume it's a package name with version
-  python -m pip install "$2"
+  # Install package from PyPI
+  python -m pip install "leap-data-management-utils[catalog]==$1"
 fi
 
 # Validate Feedstocks
