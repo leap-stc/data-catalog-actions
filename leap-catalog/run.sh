@@ -3,6 +3,8 @@
 set -e
 
 echo "🔄 Initializing LEAP Catalog Action..."
+echo "Arguments: version=$1, validation-path=$2, single-feedstock=$3, generation-path=$4, output-directory=$5, generation-path=$6"
+
 
 # Check if version is "latest"
 if [ "$1" = "latest" ]; then
