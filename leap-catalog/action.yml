@@ -22,5 +22,5 @@ outputs: {}
 runs:
   using: "composite"
   steps:
-    - run: ./run.sh "${{ inputs.version }}" "${{ inputs.validation-path }}" "${{ inputs.single-feedstock }}" "${{ inputs.generation-path }}" "${{ inputs.output-directory }}"
+    - run: leap-catalog/run.sh "${{ inputs.version }}" "${{ inputs.validation-path }}" "${{ inputs.single-feedstock }}" "${{ inputs.generation-path }}" "${{ inputs.output-directory }}"
       shell: bash
