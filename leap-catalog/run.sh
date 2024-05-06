@@ -7,10 +7,10 @@ echo "Arguments: version=$1, validation-path=$2, single-feedstock=$3, generation
 
 # Check if version is "latest"
 if [ "$1" = "latest" ]; then
-  git clone https://github.com/leap-stc/leap-data-management-utils
-  cd leap-data-management-utils
+  # git clone https://github.com/leap-stc/leap-data-management-utils
+  # cd leap-data-management-utils
   echo "🚀 Installing the package from the cloned repository..."
-  python -m pip install ".[complete]" || { echo "Installation failed"; exit 1; }
+  python -m pip install "git+https://github.com/leap-stc/leap-data-management-utils.[complete]" || { echo "Installation failed"; exit 1; }
 else
   echo "🔍 Installing package version: $1"
   python -m pip install "leap-data-management-utils[complete]==$1" || { echo "Specific version installation failed"; exit 1; }
