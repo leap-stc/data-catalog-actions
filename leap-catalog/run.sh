@@ -10,10 +10,10 @@ if [ "$1" = "latest" ]; then
   git clone https://github.com/leap-stc/leap-data-management-utils
   cd leap-data-management-utils
   echo "🚀 Installing the package from the cloned repository..."
-  python -m pip install ".[catalog]"
+  python -m pip install ".[complete]"
 else
   echo "🔍 Installing package version: $1"
-  python -m pip install "leap-data-management-utils[catalog]==$1"
+  python -m pip install "leap-data-management-utils[complete]==$1"
 fi
 
 # Validate or generate based on input arguments
