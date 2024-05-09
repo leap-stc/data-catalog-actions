@@ -23,12 +23,11 @@ jobs:
       - name: validate many
         uses: ./leap-catalog
         with:
-          version: "0.0.8"
+          version: "0.0.11"
           validation-path: "https://raw.githubusercontent.com/leap-stc/data-management/main/catalog/input.yaml"
 
       - name: Validate and Generate catalog
         uses: ./leap-catalog
         with:
-          version: "0.0.8"
           generation-path: "https://raw.githubusercontent.com/leap-stc/data-management/main/catalog/input.yaml"
           output-directory: "catalog/"
