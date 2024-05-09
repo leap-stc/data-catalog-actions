@@ -6,7 +6,7 @@ echo "🔄 Initializing LEAP Catalog Action..."
 echo "Arguments: version=$1, validation-path=$2, single-feedstock=$3, generation-path=$4, output-directory=$5"
 
 echo "🔍 Installing package version: $1"
-python -m pip install "leap-data-management-utils[complete]==$1" || { echo "Specific version installation failed"; exit 1; }
+python -m pip install "leap-data-management-utils[catalog]==$1" || { echo "Specific version installation failed"; exit 1; }
 
 
 # Validate or generate based on input arguments
