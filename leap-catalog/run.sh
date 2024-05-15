@@ -8,6 +8,11 @@ echo "Arguments: version=$1, validation-path=$2, single-feedstock=$3, generation
 echo "🔍 Installing package version: $1"
 python -m pip install "leap-data-management-utils[catalog]==$1" || { echo "Specific version installation failed"; exit 1; }
 
+# Print version and show which leap-catalog and python
+echo "🔍 Version: $1"
+echo "🔍 leap-catalog location: $(which leap-catalog)"
+echo "🔍 python location: $(which python)"
+
 
 # Validate or generate based on input arguments
 if [ -n "$3" ]; then
