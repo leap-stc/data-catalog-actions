@@ -12,6 +12,7 @@ python -m pip install "leap-data-management-utils[catalog]==$1" || { echo "Speci
 echo "🔍 Version: $1"
 echo "🔍 leap-catalog location: $(which leap-catalog)"
 echo "🔍 python location: $(which python)"
+echo "🔍 python version: $(python --version)"
 
 
 # Validate or generate based on input arguments
