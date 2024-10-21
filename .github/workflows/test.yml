@@ -3,6 +3,9 @@ name: Test LEAP Catalog Action
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -22,8 +25,14 @@ jobs:
       - name: validate single
         uses: ./leap-catalog
         with:
-          version: "0.0.12"
-          single-feedstock: "https://raw.githubusercontent.com/leap-stc/LEAP_template_feedstock/main/feedstock/catalog.yaml"
+          version: "0.0.16"
+          single-feedstock: "https://github.com/carbonplan/ocean-carbon-sink-data-feedstock/blob/main/feedstock/catalog.yaml"
+
+      - name: Validate and Generate catalog for single feedstock
+        uses: ./leap-catalog
+        with:
+          generation-single: "https://github.com/carbonplan/ocean-carbon-sink-data-feedstock/blob/main/feedstock/catalog.yaml"
+          output-directory: "catalog/"
 
       - name: validate many
         uses: ./leap-catalog
