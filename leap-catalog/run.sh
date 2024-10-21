@@ -32,7 +32,7 @@ elif [ -n "$2" ]; then
   }
 elif [ -n "$4" ] && [ -n "$6" ]; then
   echo "🔍 Generating catalog for a single feedstock from: $4 to $6"
-  leap-catalog generate --single"$4" --output "$5" || {
+  leap-catalog generate --single "$4" --output "$5" || {
     echo "Catalog generation failed"
     exit 1
   }
