@@ -22,7 +22,7 @@ jobs:
       - name: validate single
         uses: ./leap-catalog
         with:
-          version: "0.0.12"
+          version: "0.0.15"
           single-feedstock: "https://raw.githubusercontent.com/leap-stc/LEAP_template_feedstock/main/feedstock/catalog.yaml"
 
       - name: validate many
