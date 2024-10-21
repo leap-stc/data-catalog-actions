@@ -5,12 +5,15 @@ inputs:
   version:
     description: "Version of the package to install"
     required: false
-    default: "0.0.15"
+    default: "0.0.16"
   validation-path:
     description: "Path to the feedstocks input YAML file for validation"
     required: false
   single-feedstock:
     description: "Path to a single feedstock YAML file to validate"
+    required: false
+  generation-single:
+    description: "Path to a single feedstock YAML file for generation"
     required: false
   generation-path:
     description: "Path to the feedstocks input YAML file for generation"
@@ -23,5 +26,5 @@ runs:
   using: "composite"
   steps:
     - run: |
-        ${{github.action_path}}/run.sh "${{ inputs.version }}" "${{ inputs.validation-path }}" "${{ inputs.single-feedstock }}" "${{ inputs.generation-path }}" "${{ inputs.output-directory }}"
+        ${{github.action_path}}/run.sh "${{ inputs.version }}" "${{ inputs.validation-path }}" "${{ inputs.single-feedstock }}" "${{ inputs.generation-single }}" "${{ inputs.generation-path }}" "${{ inputs.output-directory }}"
       shell: bash
