@@ -5,14 +5,24 @@ set -e
 echo "🔄 Initializing LEAP Catalog Action..."
 echo "Arguments: version=$1, validation-path=$2, single-feedstock=$3, generation-single=$4, generation-path=$5, output-directory=$6"
 
-echo "🔍 Installing package version: $1"
-python -m pip install "leap-data-management-utils[catalog]==$1" || {
-  echo "Specific version installation failed"
-  exit 1
-}
+# Determine how to install the package
+if [[ "$1" == "main" ]] || [[ "$1" =~ ^[0-9a-f]{7,}$ ]] || [[ "$1" =~ ^v[0-9]+\.[0-9]+\.[0-9]+ ]]; then
+  # Install from GitHub for main branch, git SHA, or a specific tag
+  echo "🔍 Installing package from GitHub with version: $1"
+  python -m pip install "git+https://github.com/leap-stc/leap-data-management-utils@$1" || {
+    echo "Installation from GitHub failed"
+    exit 1
+  }
+else
+  # Install from PyPI for specific version
+  echo "🔍 Installing package version: $1"
+  python -m pip install "leap-data-management-utils[catalog]==$1" || {
+    echo "Specific version installation failed"
+    exit 1
+  }
+fi
 
 # Print version and show which leap-catalog and python
-echo "🔍 Version: $1"
 echo "🔍 leap-catalog location: $(which leap-catalog)"
 echo "🔍 python location: $(which python)"
 echo "🔍 python version: $(python --version)"
