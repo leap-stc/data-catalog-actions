@@ -52,7 +52,7 @@ jobs:
         shell: bash -l {0}
     environment:
       name: ${{ github.head_ref }}
-      url: https://catalog.leap.columbia.edu/?catalog=https://raw.githubusercontent.com/${{ github.repository }}/${{ github.head_ref }}/output/single-feedstock-web-catalog.json
+      url: https://catalog.leap.columbia.edu/?catalog=https://raw.githubusercontent.com/${{ github.repository }}/${{ github.head_ref }}/${{ inputs.output-directory }}/output/consolidated-web-catalog.json
     steps:
       - uses: actions/create-github-app-token@v1
         id: app-token
@@ -84,10 +84,10 @@ jobs:
         run: |
           python -m pip install pre-commit
           pre-commit install
-          git add ${{inputs.output-directory}/output/consolidated-web-catalog.json
+          git add ${{ inputs.output-directory }}/output/consolidated-web-catalog.json
           # run pre-commit and return 0 to avoid failing the job
           pre-commit run || true
-          git add ${{inputs.output-directory}/output/consolidated-web-catalog.json || true
+          git add ${{ inputs.output-directory }}/output/consolidated-web-catalog.json || true
           git commit -m "Auto-update consolidated-web-catalog.json" || true
 
       - name: Push changes
