@@ -89,7 +89,7 @@ jobs:
           pre-commit run || true || git add ${{ inputs.output-directory }}/output/consolidated-web-catalog.json || pre-commit run || true
           git add ${{ inputs.output-directory }}/output/consolidated-web-catalog.json
           echo "Committing changes....."
-          git commit -m "Auto-update consolidated-web-catalog.json" || true
+          git commit -m "Auto-update consolidated-web-catalog.json"
 
       - name: Push changes
         if: github.event_name == 'pull_request'
