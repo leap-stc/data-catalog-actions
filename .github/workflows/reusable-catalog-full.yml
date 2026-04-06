@@ -54,7 +54,7 @@ jobs:
       name: ${{ github.head_ref }}
       url: https://catalog.leap.columbia.edu/?catalog=https://raw.githubusercontent.com/${{ github.repository }}/${{ github.head_ref }}/${{ inputs.output-directory }}/output/consolidated-web-catalog.json
     steps:
-      - uses: actions/create-github-app-token@v2
+      - uses: actions/create-github-app-token@v3
         id: app-token
         with:
           app-id: ${{ secrets.APP_ID }}
